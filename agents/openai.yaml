@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tailored Resume Generator"
+  short_description: "Build JD-targeted resumes from project cards"
+  default_prompt: "Use $tailored-resume-generator to analyze this JD, select matching project cards, and generate a Markdown+HTML resume."

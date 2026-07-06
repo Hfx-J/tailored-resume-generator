@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 13mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #1f2933;
+      background: #ffffff;
+      font-family: "Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.45;
+    }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px 18px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      color: #101828;
+      font-size: 22pt;
+      line-height: 1.1;
+      border-bottom: 2px solid #344054;
+      padding-bottom: 8px;
+    }
+
+    h2 {
+      margin: 16px 0 7px;
+      color: #101828;
+      font-size: 12pt;
+      border-bottom: 1px solid #d0d5dd;
+      padding-bottom: 3px;
+    }
+
+    h3 {
+      margin: 11px 0 4px;
+      font-size: 10.5pt;
+      color: #182230;
+    }
+
+    p {
+      margin: 4px 0;
+    }
+
+    ul {
+      margin: 5px 0 8px 18px;
+      padding: 0;
+    }
+
+    li {
+      margin: 2px 0;
+    }
+
+    strong {
+      color: #101828;
+    }
+  </style>
+</head>
+<body>
+  <main>
+{{CONTENT}}
+  </main>
+</body>
+</html>
