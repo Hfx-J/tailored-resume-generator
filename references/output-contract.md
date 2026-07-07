@@ -51,7 +51,7 @@ Requirements:
 - No external fonts, scripts, tracking, or images by default.
 - Preserve simple headings, bullets, and contact information.
 
-For polished Chinese technical resume PDFs, read `chinese-technical-resume-finalization.md` and follow its single-column layout, research-section hierarchy, PDF export, screenshot inspection, and HTML self-containment checks.
+For polished Chinese technical resume PDFs, read `chinese-technical-resume-finalization.md` and follow its original-resume style inheritance rules, research-section hierarchy, PDF export, screenshot inspection, and HTML self-containment checks.
 
 Before final handoff for any JD-specific resume, read `adversarial-resume-review.md` and produce `expert-review_vN.md`. Do not call the resume final unless the expert gate returns `PASS_FOR_HUMAN_REVIEW`.
 

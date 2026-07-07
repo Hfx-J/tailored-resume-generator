@@ -1,10 +1,10 @@
 # Chinese Technical Resume Finalization
 
-Use this reference after a JD-specific resume package already exists and the user is iterating on visual quality, section density, PDF layout, or Chinese technical-resume polish.
+Use this reference after a JD-specific resume package already exists and the user is iterating on visual quality, section density, PDF layout, original-resume style matching, or Chinese technical-resume polish.
 
 ## Operating Principle
 
-Treat the latest accepted resume version as the layout source of truth. Do not redesign the whole resume unless the user explicitly rejects the template. Make bounded section patches, create a new `resume_vN`, export PDF, render screenshots, inspect visually, and record the change.
+The resume's visual style must come from evidence, not from a fixed template. Analyze the original resume or latest accepted version first, preserve the accepted page architecture, then make bounded section patches. Do not redesign the whole resume unless the user explicitly rejects the current style.
 
 ## Version Workflow
 
@@ -18,39 +18,57 @@ resume-bank/applications/YYYYMMDD-company-role/
    - `jd.md`
    - `jd-analysis.md`
    - `selected-projects.md`
+   - original resume source or extraction notes when available
    - latest `resume_vN.md`
    - latest `resume_vN.html`
+   - latest rendered PDF or screenshots when available
    - `CHANGELOG.md`
 
-3. Create the next version:
+3. Create or update visual style evidence:
+
+```text
+visual-style_vN.md
+```
+
+Record the page structure, font choices, colors, section headers, divider rules, density, emphasis pattern, and any assets such as a headshot or school logo.
+
+4. Create the next version:
 
 ```bash
 cp resume_vOLD.md resume_vN.md
 cp resume_vOLD.html resume_vN.html
 ```
 
-4. Edit only the new version.
-5. Regenerate `resume_vN.pdf`.
-6. Render pages and inspect.
-7. Run the adversarial expert gate in `adversarial-resume-review.md`.
-8. Append `CHANGELOG.md`.
+5. Edit only the new version.
+6. Regenerate `resume_vN.pdf`.
+7. Render pages and inspect.
+8. Run the adversarial expert gate in `adversarial-resume-review.md`.
+9. Append `CHANGELOG.md`.
 
 Never overwrite a reviewed or submitted version.
 
-## Accepted Chinese Technical Resume Style
+## Original Resume Style Inheritance
 
-Default to this style for conservative engineering/algorithm resumes unless the user asks otherwise:
+Use this precedence order for visual decisions:
 
-- A4, two pages when necessary.
-- Single-column layout.
-- White background with restrained red accents.
-- Original-style red section ribbons and full-width divider lines.
-- Header with headshot, name/contact/target, and school logo when assets are provided.
-- Songti/SimSun-style Chinese body text.
-- Dense but readable layout; avoid first-page whitespace and bottom clipping.
-- No flashy cards, double-column sidebars, gradients, decorative blobs, or marketing-like hero layout.
+1. User's explicit visual instruction.
+2. Original resume PDF, DOCX, HTML, Markdown, or rendered screenshots.
+3. Latest accepted `resume_vN.html/pdf` in the same application package.
+4. A neutral, readable, ATS-friendly technical resume fallback when no style source exists.
 
-Use body size based on rendered fit. If 12pt breaks the page, reduce proportionally while preserving Songti/SimSun.
+Extract these style facts before editing:
+
+- Page: paper size, page count, margins, header/footer, photo/logo placement.
+- Structure: single-column or multi-column layout, section order, timeline pattern, left/right metadata treatment.
+- Typography: Chinese and English font family, body size, heading size, line height, text alignment.
+- Color: primary text color, accent colors, divider colors, link colors, background treatment.
+- Section headers: ribbons, lines, numbered labels, plain headings, spacing before/after sections.
+- Density: paragraph spacing, bullet spacing, amount of content per page, bottom margin.
+- Emphasis: bold rhythm, metric highlighting, role/project title treatment, tag style.
+
+Only inherit a specific visual rule when evidence supports it. Do not default every resume to white background with red accents, red section ribbons, Songti/SimSun typography, single-column layout, or any other fixed style unless the original resume or user instruction uses that style.
+
+When no style source is available, ask for the original resume if visual matching matters. If the user asks to proceed without it, use a conservative fallback: print-friendly A4, clean headings, readable density, no decorative elements that reduce ATS or PDF reliability.
 
 ## Content Rules
 
@@ -67,12 +85,12 @@ Avoid formatting many papers as equal stacked headings. Use a primary/secondary 
 
 - Keep the strongest 1-2 papers as primary blocks.
 - Put additional papers under `补充论文成果`.
-- Use left-side venue/role/date tags and right-side title/contribution text.
 - Use real paper titles, especially when a publication link is shown. Do not replace a real title with an acronym-only or informal shortened title. If the real title is too long, tighten the local layout first; only shorten after the user explicitly accepts a display-title abbreviation.
 - If a paper has a public link, place a link row directly under the title. In HTML/PDF, use compact clickable text such as `IEEE Xplore`, `arXiv`, or `ICRA 2026 官方程序页` instead of a naked long URL. Keep the full URL in the Markdown/project card. For submitted/private papers without a public page, use a truthful status such as `论文链接：在投未公开`; do not fabricate a link.
-- Keep the title, link, and contribution text in one right-side content block. Avoid CSS layouts where a multi-line left meta tag creates a large vertical gap between title and link.
+- Keep the title, link, and contribution text in one content block. Avoid CSS layouts where multi-line metadata creates a large vertical gap between title and link.
+- Match the original resume's metadata style when possible. If the original uses left-side venue/role/date tags, preserve that rhythm; if it uses inline metadata, keep papers inline and compact.
 
-HTML pattern:
+HTML pattern for a primary paper:
 
 ```html
 <div class="paper paper-featured">
@@ -85,7 +103,11 @@ HTML pattern:
   <p class="content">Contribution and result sentence.</p>
   <p class="content">Second result sentence if this is a primary paper.</p>
 </div>
+```
 
+HTML pattern for compact supplementary papers:
+
+```html
 <div class="paper-secondary-group">
   <p class="paper-secondary-title">补充论文成果</p>
   <div class="paper-mini">
@@ -99,53 +121,7 @@ HTML pattern:
 </div>
 ```
 
-CSS pattern:
-
-```css
-.paper-secondary-group {
-  margin-top: 1.2mm;
-  padding-top: .9mm;
-  border-top: 1px solid #ead8d6;
-}
-.paper-secondary-title {
-  color: var(--accent);
-  font-size: 9.8pt;
-  font-weight: 800;
-}
-.paper-mini {
-  display: grid;
-  grid-template-columns: 31mm minmax(0, 1fr);
-  column-gap: 3.2mm;
-  margin-top: .55mm;
-  align-items: start;
-}
-.paper-mini .mini-meta {
-  color: var(--quiet);
-  font-size: 9.35pt;
-  line-height: 1.16;
-  white-space: nowrap;
-}
-.paper-mini .mini-main {
-  min-width: 0;
-}
-.paper-mini .mini-title {
-  font-size: 9.35pt;
-  line-height: 1.08;
-  font-weight: 700;
-}
-.paper-mini .mini-link {
-  margin: .08mm 0 0;
-  color: var(--quiet);
-  font-size: 8.35pt;
-  line-height: 1.06;
-}
-.paper-mini .mini-content {
-  margin-top: .08mm;
-  font-size: 9.65pt;
-  line-height: 1.11;
-  text-align: justify;
-}
-```
+Adapt spacing, color, and grid widths to the recorded original style. The snippets above are structure examples, not a mandatory visual theme.
 
 ## Fixed-Layout Patch Rules
 
@@ -154,7 +130,7 @@ When the user dislikes one section:
 1. Render before editing.
 2. Identify the smallest affected section.
 3. Patch only that section.
-4. Preserve header, photo, logo, section labels, margins, and page count.
+4. Preserve the original or accepted style evidence: header, photo/logo treatment, section labels, margins, page count, typography, and accent colors.
 5. Re-render and inspect.
 6. If the patch causes overflow, first tighten local spacing or restructure the affected section; do not globally shrink the whole resume.
 
@@ -176,14 +152,16 @@ pdfinfo 'APPLICATION_DIR/resume_vN.pdf'
 
 Expected for this workflow:
 
-- `Pages: 2` unless the user approved another count.
-- `Page size: 594.96 x 841.92 pts (A4)`.
+- Page count matches the user's requirement or the latest accepted resume.
+- Page size matches the original resume or explicit user instruction; use A4 only when no source indicates otherwise.
 
 Render:
 
 ```bash
 pdftoppm -png -f 1 -l 2 -r 150 'APPLICATION_DIR/resume_vN.pdf' /tmp/resume_vN_page
 ```
+
+Adjust the page range when the resume is not two pages.
 
 Inspect:
 
@@ -200,27 +178,31 @@ No output is expected for external resources, local path leaks, or stale version
 
 ## Visual QA Checklist
 
-Page 1:
+Style inheritance:
 
-- Headshot is visible and not stretched.
-- School logo is visible and not oversized.
-- Header, education, internships, and first project do not clip.
+- `visual-style_vN.md` or equivalent notes identify the style source.
+- Layout, typography, color, section headers, dividers, density, and emphasis match the original or latest accepted resume unless the user requested a change.
+- No fixed theme was imposed without evidence.
+
+Page-level checks:
+
+- Headshot and logo are visible, proportionate, and placed according to the inherited style when assets are used.
+- Header, education, internships, projects, papers, skills, and JD match sections do not clip.
 - Bullets do not collide with section labels or page bottom.
+- Last visible line stays above the page bottom with a clear margin.
 
-Page 2:
+Research checks:
 
 - Research has clear primary/secondary hierarchy.
-- Additional papers do not appear as three or more stacked full-weight headings.
+- Additional papers do not appear as three or more stacked full-weight headings unless the original style intentionally uses that pattern and it remains readable.
 - Paper titles match the real publication titles when links are shown.
-- Paper title, link, and contribution text are vertically compact; there is no blank gap caused by left-side venue/role/date tags.
-- Skills and JD match sections are fully visible.
-- Last bullet stays above the page bottom with visible margin.
+- Paper title, link, and contribution text are vertically compact; there is no blank gap caused by metadata layout.
 
 Overall:
 
 - No excessive whitespace.
 - No text overlap.
-- No flashy template choices.
+- No unsupported decorative redesign.
 - Bold emphasis creates hierarchy rather than noise.
 
 ## Adversarial Expert Gate
@@ -228,7 +210,7 @@ Overall:
 Before final handoff, read `adversarial-resume-review.md` and produce `expert-review_vN.md`.
 
 - Generate the expert persona from this JD and this resume, such as an autonomous-driving world-model hiring manager for world-model/VLA/environment-perception roles.
-- Give the expert the original resume/source extraction, JD, JD analysis, selected projects, current resume version, and PDF QA evidence.
+- Give the expert the original resume/source extraction, style evidence, JD, JD analysis, selected projects, current resume version, and PDF QA evidence.
 - Treat `CRITICAL` and unresolved `MAJOR` findings as blocking.
 - If blocked, write `review-fix-plan_vN.md`, create the next resume version, re-export PDF, and re-review.
 - Only `PASS_FOR_HUMAN_REVIEW` allows the final response to present the resume as ready for human review.
@@ -241,13 +223,14 @@ Use:
 ## YYYY-MM-DD HH:MM - vN
 
 - Trigger: user revision | formatting pass | fact correction
-- Inputs: `resume_vOLD.md`, `resume_vOLD.html`, `resume_vOLD.pdf`
-- Outputs: `resume_vN.md`, `resume_vN.html`, `resume_vN.pdf`
+- Inputs: `resume_vOLD.md`, `resume_vOLD.html`, `resume_vOLD.pdf`, style source
+- Outputs: `resume_vN.md`, `resume_vN.html`, `resume_vN.pdf`, `visual-style_vN.md`
 - Changes:
   - ...
 - Verification:
-  - Rendered vN as a 2-page A4 PDF.
+  - Rendered vN as a PDF with expected page count and page size.
   - Visually checked page screenshots for clipping/overlap.
+  - Checked visual style inheritance against `visual-style_vN.md`.
   - Checked HTML has no external resource links or local path leaks.
   - Expert review: PASS_FOR_HUMAN_REVIEW | BLOCKED_BY_EXPERT | BLOCKED_BY_EXPERT_USER_OVERRIDE.
   - Expert findings: CRITICAL 0, MAJOR 0, MINOR 0.
@@ -255,6 +238,6 @@ Use:
 
 ## Final Response
 
-If `expert-review_vN.md` returns `PASS_FOR_HUMAN_REVIEW`, link `resume_vN.pdf`, `resume_vN.html`, and `resume_vN.md`. Mention page count, visual QA, expert gate result, and any remaining fact-safety caveats.
+If `expert-review_vN.md` returns `PASS_FOR_HUMAN_REVIEW`, link `resume_vN.pdf`, `resume_vN.html`, `resume_vN.md`, and the style evidence file. Mention page count, visual QA, expert gate result, and any remaining fact-safety caveats.
 
 If the expert gate blocks the version, link `expert-review_vN.md` and `review-fix-plan_vN.md` instead, then state that the resume is not ready for human review yet.

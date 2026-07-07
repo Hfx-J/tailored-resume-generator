@@ -60,14 +60,15 @@ Use this before tailoring a resume for a specific JD.
 
 ### Finalize A Polished Chinese Technical Resume
 
-Use this after a JD-specific resume draft exists and the user asks for PDF polish, visual refinement, original-resume style matching, photo/logo inclusion, single-column layout, or iterative fixes to sections such as internships, projects, and research papers.
+Use this after a JD-specific resume draft exists and the user asks for PDF polish, visual refinement, original-resume style matching, photo/logo inclusion, layout tuning, or iterative fixes to sections such as internships, projects, and research papers.
 
 1. Continue from the existing application package; do not create a parallel package or separate one-off skill.
 2. Read `references/chinese-technical-resume-finalization.md`.
-3. Create the next `resume_vN.md` / `resume_vN.html` version before editing.
-4. Preserve the accepted page architecture and patch only the smallest affected section.
-5. Export PDF, render page images, visually inspect both pages, check for resource leaks, and update `CHANGELOG.md`.
-6. Run the dynamic adversarial expert review. Do not hand off the resume to the user as final unless the gate result is `PASS_FOR_HUMAN_REVIEW`.
+3. Analyze the original resume or latest accepted version and save the style evidence as `visual-style_vN.md` or an equivalent note before changing layout.
+4. Create the next `resume_vN.md` / `resume_vN.html` version before editing.
+5. Preserve the accepted page architecture and patch only the smallest affected section.
+6. Export PDF, render page images, visually inspect both pages, check for resource leaks, and update `CHANGELOG.md`.
+7. Run the dynamic adversarial expert review. Do not hand off the resume to the user as final unless the gate result is `PASS_FOR_HUMAN_REVIEW`.
 
 ### Run Dynamic Expert Adversarial Review
 
@@ -128,7 +129,7 @@ Keep personal facts in the bank, not inside this skill. The skill must stay reus
 - `references/role-fit-rubric.md`: JD parsing and project scoring rules.
 - `references/output-contract.md`: Markdown and HTML resume output requirements.
 - `references/application-package.md`: per-JD folder, versioning, and changelog contract.
-- `references/chinese-technical-resume-finalization.md`: final Chinese technical resume polish workflow, single-column A4 layout rules, research-section hierarchy, and PDF QA checklist.
+- `references/chinese-technical-resume-finalization.md`: final Chinese technical resume polish workflow, original-resume style inheritance rules, research-section hierarchy, and PDF QA checklist.
 - `references/adversarial-resume-review.md`: dynamic expert persona, adversarial review protocol, blocking severity rules, and pass/fail gate.
 - `assets/resume-template.html`: self-contained HTML template.
 - `scripts/init_resume_bank.py`: create a draft resume bank from an existing resume.
