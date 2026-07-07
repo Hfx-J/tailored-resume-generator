@@ -76,7 +76,7 @@ When no style source is available, ask for the original resume if visual matchin
 - Lead with JD-relevant evidence, but keep chronology truthful inside each role.
 - Use bold for section labels, role/project names, leading bullet keywords, and key metrics only.
 - Do not bold every title and every result; the page needs a visual rhythm.
-- Keep unsupported claims out of the resume. Do not claim full sensor-to-decision autonomous driving, world-model closed-loop deployment, independent 3DGS work, or accepted top-conference publications unless the resume bank proves them.
+- Keep unsupported claims out of the resume. Do not claim production deployment, core ownership, independent end-to-end delivery, accepted publications, awards, certifications, or quantified business impact unless the resume bank proves them.
 - Preserve truthful boundaries internally, but do not put prompt-like caveats such as "针对该岗位", "相邻能力表述", "能力边界", or "可迁移经验" into visible resume copy unless they are natural, candidate-facing wording.
 
 ## Research Section Pattern
@@ -209,7 +209,7 @@ Overall:
 
 Before final handoff, read `adversarial-resume-review.md` and produce `expert-review_vN.md`.
 
-- Generate the expert persona from this JD and this resume, such as an autonomous-driving world-model hiring manager for world-model/VLA/environment-perception roles.
+- Generate the expert persona from this JD and this resume, such as an engineering manager, data analytics lead, product operations lead, research supervisor, or another reviewer role implied by the JD.
 - Give the expert the original resume/source extraction, style evidence, JD, JD analysis, selected projects, current resume version, and PDF QA evidence.
 - Treat `CRITICAL` and unresolved `MAJOR` findings as blocking.
 - If blocked, write `review-fix-plan_vN.md`, create the next resume version, re-export PDF, and re-review.

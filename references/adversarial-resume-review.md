@@ -36,8 +36,8 @@ Generate the expert identity from the JD and resume. Do not use a generic "resum
 Construct the persona with these lenses:
 
 - Target-domain hiring manager: derived from the role title, company domain, and the top JD requirements.
-- Technical interviewer: derived from the most important methods in the JD, such as world models, VLA, multimodal perception, SLAM, 3D reconstruction, deployment, or training efficiency.
-- Production reviewer: include this when the JD mentions deployment, mass production, edge/cloud runtime, data pipeline, closed-loop simulation, or business value.
+- Technical interviewer: derived from the most important methods, tools, platforms, or responsibilities in the JD.
+- Production reviewer: include this when the JD mentions deployment, operations, runtime constraints, data pipelines, reliability, or business value.
 - Truthfulness reviewer: include this when the resume has publications, internships, metrics, confidential systems, or claims adjacent to but not directly proven by the source.
 
 Persona template:
@@ -48,9 +48,10 @@ Persona template:
 
 Examples:
 
-- World model / VLA / environment perception JD: autonomous-driving multimodal world-model hiring manager with vehicle/cloud deployment and training-efficiency review lenses.
-- SLAM / localization JD: robotics localization and mapping algorithm lead with geometric consistency, real-time, and sensor-fusion review lenses.
-- End-to-end unmanned delivery JD: autonomous delivery end-to-end driving lead with perception-planning integration, simulation, and safety review lenses.
+- Backend infrastructure JD: distributed-systems engineering manager with reliability, scalability, and ownership review lenses.
+- Data analytics JD: data analytics hiring manager with metric design, business impact, and stakeholder-communication review lenses.
+- Product operations JD: business operations lead with process design, execution quality, and cross-functional collaboration review lenses.
+- Research assistant JD: lab or project supervisor with literature, experiment design, reproducibility, and writing-quality review lenses.
 
 ## Review Dimensions
 
@@ -81,7 +82,7 @@ Use `CRITICAL`, `MAJOR`, and `MINOR`.
 - The first page does not clearly answer the JD's core requirements.
 - Important internships, research, or projects are too compressed to show technical depth.
 - Keyword stuffing weakens credibility.
-- Claims use unsupported intensity such as "精通", "主导", "量产", "闭环", "端到端", or "世界模型" without enough evidence.
+- Claims use unsupported intensity such as "精通", "主导", "核心负责人", "独立完成", "落地上线", or "显著提升" without enough evidence.
 - The layout is readable but has poor hierarchy, excessive whitespace, chaotic emphasis, or misplaced section order.
 
 `MINOR` does not block completion when no `CRITICAL` or unresolved `MAJOR` remains. Examples:
